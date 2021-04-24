@@ -2,15 +2,8 @@ package com.springboot.prices.dto;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.NoArgsConstructor;
 
-import java.util.Date;
 
-@Builder
-@AllArgsConstructor
-@NoArgsConstructor
 @ApiModel("Price")
 public class PriceDTO {
 
@@ -20,10 +13,10 @@ public class PriceDTO {
     private int brandId;
 
     @ApiModelProperty(value = "startDate", example = "2020-06-14-00.00.00")
-    private Date startDate;
+    private String startDate;
 
     @ApiModelProperty(value = "endDate", example = "2020-12-31-23.59.59")
-    private Date endDate;
+    private String endDate;
 
     @ApiModelProperty(value = "priceList", example = "1")
     private int priceList;
@@ -37,4 +30,68 @@ public class PriceDTO {
     @ApiModelProperty(value = "price", example = "35.50")
     private long price;
 
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public int getBrandId() {
+        return brandId;
+    }
+
+    public void setBrandId(int brandId) {
+        this.brandId = brandId;
+    }
+
+    public String getStartDate() {
+        return startDate;
+    }
+
+    public void setStartDate(String startDate) {
+        this.startDate = startDate;
+    }
+
+    public String getEndDate() {
+        return endDate;
+    }
+
+    public void setEndDate(String endDate) {
+        this.endDate = endDate;
+    }
+
+    public int getPriceList() {
+        return priceList;
+    }
+
+    public void setPriceList(int priceList) {
+        this.priceList = priceList;
+    }
+
+    public int getProductId() {
+        return productId;
+    }
+
+    public void setProductId(int productId) {
+        this.productId = productId;
+    }
+
+    public int getPriority() {
+        return priority;
+    }
+
+    public void setPriority(int priority) {
+        this.priority = priority;
+    }
+
+    public long getPrice() {
+        return price;
+    }
+
+    public void setPrice(long price) {
+        this.price = price;
+    }
 }
