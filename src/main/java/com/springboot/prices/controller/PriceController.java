@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -34,9 +34,15 @@ public class PriceController {
 
     @ApiOperation(value = "GET price by parameters", response = Iterable.class)
     @GetMapping(value = "/price")
-    public ResponseEntity<List<PriceDTO>> getPricesByParams(@RequestParam("date") @DateTimeFormat(pattern = "yyyy-MM-dd-HH.mm.ss") Date applicationDate,
+    public ResponseEntity<List<PriceDTO>> getPricesByParams(@RequestParam("date") @DateTimeFormat(pattern = "yyyy-MM-dd-HH.mm.ss") LocalDate applicationDate,
                                                             @RequestParam("productId") int productId,
                                                             @RequestParam("brandId") int brandId) {
         return ResponseEntity.ok(priceService.getPricesByParams(applicationDate, productId, brandId));
+    }
+
+    @ApiOperation(value = "GET all prices", response = Iterable.class)
+    @GetMapping(value = "/prices")
+    public ResponseEntity<List<PriceDTO>> getAllPrices() {
+        return ResponseEntity.ok(priceService.getAllPrices());
     }
 }
