@@ -7,7 +7,7 @@ import com.springboot.prices.repository.PriceRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -19,13 +19,10 @@ public class PriceService {
 
     public PriceDTO getPriceById(int id) {
         Optional<Price> price = priceRepository.findById(id);
-        if (price.isPresent()) {
-            return PriceMapper.INSTANCE.priceToPriceDTO(price.get());
-        }
-        return null;
+        return price.map(PriceMapper.INSTANCE::priceToPriceDTO).orElse(null);
     }
 
-    public List<PriceDTO> getPricesByParams(LocalDate applicationDate, int productId, int brandId) {
+    public List<PriceDTO> getPricesByParams(LocalDateTime applicationDate, int productId, int brandId) {
         List<PriceDTO> prices = new ArrayList<>();
         priceRepository.getListPrices(applicationDate, productId, brandId)
                 .forEach(price -> prices.add(PriceMapper.INSTANCE.priceToPriceDTO(price)));

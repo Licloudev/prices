@@ -11,7 +11,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -43,8 +43,18 @@ public class PriceServiceTest {
     }
 
     @Test
+    public void shouldGetAllPrices(){
+        Price price = createPrice(1);
+        when(priceRepository.findAll()).thenReturn(getPrices());
+
+        List<PriceDTO> priceDTOS = priceService.getAllPrices();
+
+        Assert.assertNotNull(priceDTOS);
+    }
+
+    @Test
     public void shouldGetPricesByParams(){
-        LocalDate now = LocalDate.now();
+        LocalDateTime now = LocalDateTime.now();
         int productId = 35455;
         int brandId = 1;
         when(priceRepository.getListPrices(now, productId, brandId)).thenReturn(getPrices());
@@ -54,7 +64,7 @@ public class PriceServiceTest {
         Assert.assertNotNull(priceDTOS);
         priceDTOS.forEach(priceDTO -> {
             Assert.assertEquals(productId, priceDTO.getProductId());
-            Assert.assertEquals(brandId, priceDTO.getBrandId().getId());
+            Assert.assertEquals(brandId, priceDTO.getBrandId());
         });
     }
 
@@ -78,8 +88,8 @@ public class PriceServiceTest {
         price.setProductId(35455);
         price.setPriority(1);
         price.setBrandId(createBrand());
-        price.setStartDate(LocalDate.now());
-        price.setEndDate(LocalDate.now());
+        price.setStartDate(LocalDateTime.now());
+        price.setEndDate(LocalDateTime.now());
 
         return price;
     }

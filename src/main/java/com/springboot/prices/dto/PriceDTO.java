@@ -3,7 +3,6 @@ package com.springboot.prices.dto;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
-import java.time.LocalDate;
 
 @ApiModel("Price")
 public class PriceDTO {
@@ -11,13 +10,13 @@ public class PriceDTO {
     private int id;
 
     @ApiModelProperty(value = "brandId", example = "1")
-    private BrandDTO brandId;
+    private int brandId;
 
     @ApiModelProperty(value = "startDate", example = "2020-06-14-00.00.00")
-    private LocalDate startDate;
+    private String startDate;
 
     @ApiModelProperty(value = "endDate", example = "2020-12-31-23.59.59")
-    private LocalDate endDate;
+    private String endDate;
 
     @ApiModelProperty(value = "priceList", example = "1")
     private int priceList;
@@ -40,27 +39,27 @@ public class PriceDTO {
         this.id = id;
     }
 
-    public BrandDTO getBrandId() {
+    public int getBrandId() {
         return brandId;
     }
 
-    public void setBrandId(BrandDTO brandId) {
+    public void setBrandId(int brandId) {
         this.brandId = brandId;
     }
 
-    public LocalDate getStartDate() {
+    public String getStartDate() {
         return startDate;
     }
 
-    public void setStartDate(LocalDate startDate) {
+    public void setStartDate(String startDate) {
         this.startDate = startDate;
     }
 
-    public LocalDate getEndDate() {
+    public String getEndDate() {
         return endDate;
     }
 
-    public void setEndDate(LocalDate endDate) {
+    public void setEndDate(String endDate) {
         this.endDate = endDate;
     }
 
