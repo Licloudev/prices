@@ -13,7 +13,7 @@ public class Price {
     private int id;
 
     @ManyToOne()
-    @JoinColumn(name = "brand_id")
+    @JoinColumn(name = "BRAND_ID")
     private Brand brandId;
 
     @Column(name = "START_DATE")
@@ -33,4 +33,7 @@ public class Price {
 
     @Column
     private long price;
+
+    @Column(name = "CURR", length = 3)
+    private String currency;
 }
